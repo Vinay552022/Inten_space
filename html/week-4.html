@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+<body>
+    <script>
+        fetch('https://reqres.in/api/users',)
+        .then(response => response.json()).then(data => console.log(data)).catch(error => console.log(error));
+        fetch('https://reqres.in/api/users',{
+            method:'POST',
+            headers:{
+                'Content-Type':"application/json"
+            },
+            body:JSON.stringify({
+                name:"Vinay",
+                id:"1234"
+            })
+        })
+        .then(response => response.json()).then(data => console.log(data)).catch(errror => console.log("erroe"));
+
+        fetch('https://reqres.in/api/users',)
+        .then(response => response.json()).then(data => console.log(data)).catch(error => console.log(error));
+    </script>
+</body>
+</html>
