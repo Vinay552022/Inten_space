@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FetchandDisplay</title>
+    <style>
+        table{
+            border: 4px solid rgb(57, 150, 147);
+            border-collapse:collapse;
+            width: 70%;
+            height: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            margin-bottom: auto;
+        }
+        td,tr,th{
+            border: 2px inset white;
+            padding: 2px;
+            text-align: center;
+            height: 40px;
+        }
+        ul{
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <table id="table">
+
+    </table>
+    <h2>Employees with salary greater than 50000</h2>
+    <ul id="sal"></ul>
+    <h2>Employees joined in the month of December</h2>
+    <ul id="dec"></ul>
+
+    
+</body>
+<script>
+    var info;
+    fetch('https://rawcdn.githack.com/kmitprojectschool/sem12022/788c820e40a750fecb30433c8d346457b7859abc/employee.json')
+    .then(res => res.json()).then(data=> { 
+        info=data;
+        init();
+    });
+    function init(){
+        let data=info["Employees"];
+        let tbl=document.getElementById("table"),x="";
+        x+="<tr>"
+        for(let i in data[0])
+        {
+           x+= "<th>"+i+"</th>";
+        }
+        x+="</tr>";
+        for(let i of data)
+        {
+            x+="<tr>";
+            for(let j in i)
+            {
+                x+="<td>"+i[j]+"</td>";
+            }
+            x+="</tr>";
+        }
+        tbl.innerHTML=x;
+        salary(data);
+    }
+    function salary(data){
+        let s=document.getElementById("sal"),x="";
+        let d=document.getElementById("dec"),y="";
+        for(let i of data){
+            if(i["Salary"]>50000){
+                x+="<li>"+i["Name"]+"</li>";
+                console.log(i["Salary"]);
+            }
+            if(i["DateOfJoining"].substring(3,5)=="12"){
+                y+="<li>"+i["Name"]+"</li>";
+            }
+        }
+        s.innerHTML=x;
+        d.innerHTML=y;
+    }
+</script>
+</html>
