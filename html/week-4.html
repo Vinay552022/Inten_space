@@ -9,8 +9,16 @@
 <body>
     <h1>OPEN CONSOLE</h1>
     <script>
-        fetch('https://reqres.in/api/users',)
-        .then(response => response.json()).then(data => console.log(data)).catch(error => console.log(error));
+        fetch('https://reqres.in/api/users')
+        .then(response => {
+            if(response.ok){
+                return response.json();
+            }
+            else{
+                console.log("error");
+            }
+                        
+        }).then(data => console.log(data));
         fetch('https://reqres.in/api/users',{
             method:'POST',
             headers:{
